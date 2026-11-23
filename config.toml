@@ -1,0 +1,28 @@
+# Nastavení Diktátu. Po změně aplikaci restartuj (tray -> Konec, pak znovu spustit).
+
+[hotkey]
+# Klávesa, kterou držíš při diktování. Názvy podle knihovny "keyboard":
+# "right ctrl", "right alt", "caps lock", "f9", "scroll lock" ...
+key = "right ctrl"
+# Kratší nahrávky (sekundy) se zahodí - chrání před náhodným stiskem.
+min_seconds = 0.3
+
+[whisper]
+model = "large-v3"       # přesnější v češtině; rychlejší, ale horší: "large-v3-turbo"
+language = "cs"
+device = "cuda"          # "cuda" nebo "cpu"
+compute_type = "float16" # na CPU se automaticky použije "int8"
+# Vlastní slovník - česká věta s odbornými výrazy. Whisper podle ní pozná jazyk i termíny.
+# Pište ji jako běžnou větu s interpunkcí, ne jako seznam slov.
+vocabulary = "Dobrý den, posílám rozpočet a výkaz výměr. Položky od dodavatele jsou bez DPH, včetně kabeláže, PoE switchů a rozvaděče. Text upravuje Gemma."
+
+[cleanup]
+enabled = true
+ollama_url = "http://127.0.0.1:11434"
+model = "gemma4:e4b"     # malý model se vejde do VRAM spolu s Whisperem
+timeout_seconds = 8
+keep_alive = "30m"
+
+[insert]
+# Přidat mezeru za vložený text (hodí se při diktování po větách).
+trailing_space = true
